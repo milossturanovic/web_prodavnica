@@ -80,10 +80,10 @@ while($row=mysqli_fetch_assoc($cat_res)){
 										?>
 										
                                     </div>
-                                    <div class="htc__shopping__cart">
+                                    <!-- <div class="htc__shopping__cart">
                                         <a href="cart.php"><i class="icon-handbag icons"></i></a>
                                         <a href="cart.php"><span class="htc__qua"><?php echo $totalProduct?></span></a>
-                                    </div>
+                                    </div> -->
                                 </div>
                             </div>
                         </div>
