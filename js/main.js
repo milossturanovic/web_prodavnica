@@ -295,3 +295,32 @@ function user_login(){
 		});
 	}	
 }
+
+
+
+
+function manage_cart(pid, type) {
+    // Ako je tip 'update', preuzmi količinu iz input polja sa ID-jem koji je kombinacija pid i 'qty'
+    if (type == 'update') {
+        var qty = jQuery("#" + pid + "qty").val();
+    } else {
+        // U suprotnom, preuzmi količinu iz input polja sa ID-jem 'qty'
+        var qty = jQuery("#qty").val();
+    }
+
+    // Pošalji AJAX POST zahtev na 'manage_cart.php' sa podacima o proizvodu i tipu akcije
+    jQuery.ajax({
+        url: 'manage_cart.php', // URL server-side skripte koja obrađuje zahtev
+        type: 'post',           // Metoda slanja je POST
+        data: 'pid=' + pid + '&qty=' + qty + '&type=' + type, // Podaci koji se šalju: ID proizvoda, količina, tip akcije
+        success: function(result) {
+            // Ako je tip akcije 'update' ili 'remove', prebaci korisnika na 'cart.php' stranicu
+            if (type == 'update' || type == 'remove') {
+                window.location.href = 'cart.php';
+            }
+            // Ažuriraj HTML sadržaj elementa sa klasom 'htc__qua' rezultatom koji vrati server
+            jQuery('.htc__qua').html(result);
+        }
+    });
+}
+
