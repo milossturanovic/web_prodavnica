@@ -72,7 +72,7 @@ require('top.php');
                                             <a href="<?php echo SITE_PATH?>">Nastavi sa kupovinom</a>
                                         </div>
                                         <div class="buttons-cart checkout--btn">
-                                            <a href="">Nastavi</a>
+                                            <a href="<?php echo SITE_PATH?>checkout.php">Nastavi</a>
                                         </div>
                                     </div>
                                 </div>
