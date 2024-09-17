@@ -62,28 +62,22 @@ $totalProduct = $obj->totalProduct();
 
                                     </ul>
                                 </nav>
-
-
-
-
-
                             </div>
+
+                            
                             <div class="col-md-3 col-lg-3 col-sm-4 col-xs-4">
                                 <div class="header__right">
-                                    <div class="header__search search search__open">
-                                        <a href="#"><i class="icon-magnifier icons"></i></a>
-                                    </div>
                                     <div class="header__account">
                                         <?php if (isset($_SESSION['USER_LOGIN'])) {
-                                            echo '<a href="logout.php">Odjavi se</a>';
+                                            echo '<a href="logout.php">Odjavi se</a><a href="my_order.php">Moje porudžbine</a>';
                                         } else {
-                                            echo '<a href="login.php">Prijava / Registracija</a>';
+                                            echo '<a href="login.php">Prijava/Registracija</a>';
                                         }
                                         ?>
 
                                     </div>
                                     <div class="htc__shopping__cart">
-                                        <a href="cart.php"><i class="icon-handbag icons"></i></a>
+                                        <a class="cart__menu" href="#"><i class="icon-handbag icons"></i></a>
                                         <a href="cart.php"><span class="htc__qua"><?php echo $totalProduct ?></span></a>
                                     </div>
                                 </div>
@@ -123,14 +117,12 @@ $totalProduct = $obj->totalProduct();
                 font-weight: 300;
             }
 
-            .htc__shopping__cart a span.htc__qua{
+            .htc__shopping__cart a span.htc__qua {
                 font-family: 'Inter', sans-serif;
             }
 
-            h4, a {
+            h4,
+            a {
                 font-family: 'Inter', sans-serif !important;
             }
-
-
-
         </style>
