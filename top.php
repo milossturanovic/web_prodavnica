@@ -3,16 +3,28 @@ require('connection.inc.php');
 require('functions.inc.php');
 require('add_to_cart.inc.php');
 
-//prikaz kategorija koji su aktivni (status 1)
-$cat_res = mysqli_query($con, "select * from categories where status=1 order by categories asc");
+
+// Prikaz kategorija koje su aktivne (status 1)
+// Izvršava SQL upit za dobijanje svih kategorija sa statusom 1, sortiranih po nazivu kategorije
+$cat_res = mysqli_query($con, "SELECT * FROM categories WHERE status=1 ORDER BY categories ASC");
+
+// Inicijalizacija praznog niza za čuvanje kategorija
 $cat_arr = array();
+
+// Petlja koja prolazi kroz rezultate upita i dodaje svaku kategoriju u niz $cat_arr
 while ($row = mysqli_fetch_assoc($cat_res)) {
     $cat_arr[] = $row;
 }
 
+// Kreiranje novog objekta klase add_to_cart za rukovanje korpom
 $obj = new add_to_cart();
+
+// Pozivanje metode totalProduct() iz objekta $obj za dobijanje ukupnog broja proizvoda u korpi
 $totalProduct = $obj->totalProduct();
+
 ?>
+
+
 <!doctype html>
 <html class="no-js" lang="en">
 
@@ -46,7 +58,7 @@ $totalProduct = $obj->totalProduct();
                                     <a href="index.php"><img src="images/logo/nike-logo.png" alt="logo images"></a>
                                 </div>
                             </div>
-                            <div class="col-md-7 col-lg-7 col-sm-5 col-xs-3">
+                            <div class="col-md-6 col-lg-6 col-sm-5 col-xs-3">
 
                                 <nav class="main__menu__nav hidden-xs hidden-sm">
                                     <ul class="main__menu">
@@ -64,16 +76,23 @@ $totalProduct = $obj->totalProduct();
                                 </nav>
                             </div>
 
-                            
-                            <div class="col-md-3 col-lg-3 col-sm-4 col-xs-4">
+
+                            <div class="col-md-4 col-lg-4 col-sm-4 col-xs-4">
                                 <div class="header__right">
+                                    <div class="header__search search search__open">
+                                        <a href="#"><i class="icon-magnifier icons"></i></a>
+                                    </div>
                                     <div class="header__account">
-                                        <?php if (isset($_SESSION['USER_LOGIN'])) {
-                                            echo '<a href="logout.php">Odjavi se</a><a href="my_order.php">Moje porudžbine</a>';
-                                        } else {
-                                            echo '<a href="login.php">Prijava/Registracija</a>';
-                                        }
-                                        ?>
+                                    <?php
+                                    // Provera da li je korisnik prijavljen, proveravajući da li je setovana sesija 'USER_LOGIN'
+                                    if (isset($_SESSION['USER_LOGIN'])) {
+                                        // Ako je korisnik prijavljen, prikazuje linkove za odjavu i pregled njegovih porudžbina
+                                        echo '<a href="logout.php">Odjavi se</a><a href="my_order.php">Moje porudžbine</a>';
+                                    } else {
+                                        // Ako korisnik nije prijavljen, prikazuje link za prijavu ili registraciju
+                                        echo '<a href="login.php">Prijava/Registracija</a>';
+                                    }
+                                    ?>
 
                                     </div>
                                     <div class="htc__shopping__cart">
